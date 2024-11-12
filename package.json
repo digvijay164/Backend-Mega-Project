@@ -2,14 +2,18 @@
   "name": "nodejs-mega-project",
   "version": "1.0.0",
   "description": "Backend Mega Project",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "javascript",
     "backend"
   ],
   "author": "Digvijay Jayant Desai",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.7"
+  }
 }

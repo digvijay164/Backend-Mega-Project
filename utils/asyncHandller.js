@@ -7,7 +7,7 @@
 
 
 // using standard try catch method
-const asyncHandller = (fn)=> async (req, res, next)=>{
+const asyncHandler = (fn)=> async (req, res, next)=>{
      try{
         await fn(req,res,next)
      }catch(err){
@@ -18,4 +18,4 @@ const asyncHandller = (fn)=> async (req, res, next)=>{
      }
 };
 
-export default asyncHandller;
+export  {asyncHandler};

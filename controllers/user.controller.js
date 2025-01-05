@@ -8,20 +8,23 @@ const registerUser = asyncHandler( async (req,res)=>{
     // res.status(200).json({
     //     message: "OK working"
     // })
+    console.log('Files:', req.files); // Log uploaded files
+    console.log('Body:', req.body);   // Log form data
+
 
     const {username, fullname, email, password} = req.body;
-    console.log('email : ', email);
+    console.log(` Full name : ${fullname} \n Username : ${username} \n email : ${email} \n Password : ${password}`);
     
     if(username === "") throw new ApiError(400,"user name is required");
     if(fullname === "") throw new ApiError(400,"user name is required");
     if(password === "") throw new ApiError(400,"user name is required");
     if(email === "") throw new ApiError(400,"user name is required");
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [ {username},{email} ]
     });
 
-    if(existedUser) throw ApiError(409, `user with ${username} and ${email} allready exist`);
+    if(existedUser) throw new ApiError(409, `user with ${username} and ${email} allready exist`);
 
     // ? Is used for to check is it optional or not
     const avatarLocalPath = req.files?.avatar[0]?.path;

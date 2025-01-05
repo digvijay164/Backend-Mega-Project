@@ -8,8 +8,8 @@ const registerUser = asyncHandler( async (req,res)=>{
     // res.status(200).json({
     //     message: "OK working"
     // })
-    console.log('Files:', req.files); // Log uploaded files
-    console.log('Body:', req.body);   // Log form data
+    // console.log('Files:', req.files); // Log uploaded files
+    // console.log('Body:', req.body);   // Log form data
 
 
     const {username, fullname, email, password} = req.body;
@@ -40,7 +40,7 @@ const registerUser = asyncHandler( async (req,res)=>{
     const user = await User.create(
         {
             fullname,
-            avatar: avatar.url,
+            avatar: avatar.url || "",
             coverimage: coverImage.url || "",
             email,
             password,
@@ -54,10 +54,8 @@ const registerUser = asyncHandler( async (req,res)=>{
 
     if(!createdUser) throw new ApiError(500, "something went wrong while registering the user");
      
-    return res.status(2001).json(
-        201,
-        createdUser,
-        "user registered successfully"
+    return res.status(201).json(
+       new ApiResponse(200, createdUser, "user registered successfully") 
     )
     
 

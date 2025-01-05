@@ -8,7 +8,7 @@ const connectDB = async ()=>{
         
     }catch(err){
         console.log(`ERROR Connecting MongoDB : ${err}`);
-        throw err
+        throw new err
     }
 }
 

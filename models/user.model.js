@@ -52,10 +52,10 @@ const userSchema = mongoose.Schema(
     }
 );
 // WE DO NOT USE ARROW FUNCTION BECAUSE IT DOESN'T TAKE ANY CONTEXT ALSO, AERO FUNCTION CAN'T TAKE REFERENCE OF [this], THEREFORE, IF YOU WANT TO MANIPULATE THE USER SCHEMA, THEN WE HAVE TO USE STANDARD FUNCTION METHOD
-userSchema.pre("save", async function(next){
-    if(!this.Modified("password")) return next();
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next();
 
-    this.password = await bcrypt.hash(this.password, '10');
+    this.password = await bcrypt.hash(this.password, 10); // Remove quotes from the saltRounds number
     next();
 });
 

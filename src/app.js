@@ -18,10 +18,10 @@ app.use(express.urlencoded({
 
 app.use(cookieParser());
 
-import {router} from '../routes/user.routes.js'
+import userRoute from '../routes/user.routes.js'
 
-app.use('/api/v1/user', router)
-console.log( "USER ROUTER : ",router);
+app.use('/api/v1/user', userRoute)
+// console.log( "USER ROUTER : ",userRoute);
 
 
 export  default app
